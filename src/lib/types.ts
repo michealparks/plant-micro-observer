@@ -1,4 +1,4 @@
 export type ImageDataObject = {
-  file: File,
+  blob: Blob,
   objectURL: string
 }

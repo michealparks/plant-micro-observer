@@ -1,4 +1,6 @@
 <script lang="ts">
+  import type { ImageDataObject } from './lib/types'
+
   import localforage from 'localforage'
   import { onMount } from 'svelte'
   import Images from './lib/Images.svelte'
@@ -11,10 +13,16 @@
       driver: localforage.INDEXEDDB
     })
 
-    $images = await localforage.getItem('images') || []
+    const storedImages: ImageDataObject[] = await localforage.getItem('images') || []
 
-    images.subscribe(async (update) => {
-      await localforage.setItem('images', update)
+    for (const image of storedImages) {
+      image.objectURL = URL.createObjectURL(image.blob)
+    }
+
+    $images = storedImages
+
+    images.subscribe(async (updatedImages) => {
+      await localforage.setItem('images', updatedImages)
     })
   })
 </script>

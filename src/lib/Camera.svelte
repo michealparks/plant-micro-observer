@@ -1,13 +1,20 @@
 <script lang='ts'>
   import { images } from './stores'
+  import { utils } from './utils'
 
-  const handleInputChange = (e: Event) => {
+  const handleInputChange = async (e: Event) => {
     const target = e.target as HTMLInputElement
     const file = target.files[0]
 
+    if (file === undefined) {
+      return
+    }
+  
+    const blob = await utils.fileToBlob(file)
+
     $images = [...$images, {
-      file,
-      objectURL: URL.createObjectURL(file)
+      blob,
+      objectURL: URL.createObjectURL(blob)
     }]
 
     target.value = ''
