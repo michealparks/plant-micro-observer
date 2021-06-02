@@ -15,10 +15,6 @@
       driver: localforage.INDEXEDDB
     })
 
-    if (process.env.NODE_ENV === 'development') {
-      localforage.clear()
-    }
-
     const storedImages: ImageDataObject[] = await localforage.getItem('images') || []
 
     for (const image of storedImages) {
