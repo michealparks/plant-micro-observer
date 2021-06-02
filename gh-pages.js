@@ -1,9 +1,9 @@
 require('gh-pages').publish('dist', {
-  dotfiles: true
+	dotfiles: true
 }, (err) => {
-  if (err) {
-    console.error(err)
-  } else {
-    console.log('Published')
-  }
+	if (err) {
+		console.error(err)
+	} else {
+		console.log('Published')
+	}
 })

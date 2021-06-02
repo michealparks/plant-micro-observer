@@ -47,7 +47,7 @@
 		user-select: none;
 		-webkit-user-select: none;
 		-webkit-user-drag: none;
-    width: 100%;
-    margin-bottom: 5px;
-  }
+		width: 100%;
+		margin-bottom: 5px;
+	}
 </style>

@@ -34,8 +34,8 @@ export const filteredImages = derived<[Writable<PlantData[]>, Writable<string>],
 		const filter = $searchFilter.toLowerCase()
 
 		if (filter === '') {
-      return $images
-    }
+			return $images
+		}
 
 		return $images.filter((item: PlantData) => {
 			for (const field of SEARCHABLE_DATA) {

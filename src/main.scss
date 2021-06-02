@@ -1,59 +1,59 @@
 :root {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  --primary-dark: #09210e;
-  --neutral: #f5f2e3;
-  --light-green: #dcf7b8;
-  --dark-green: #15640f;
-  --light-blue: #92B8F4;
-  --blue-grey: #607D8B;
-  --red: rgb(175, 27, 82);
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+		Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+	--primary-dark: #09210e;
+	--neutral: #f5f2e3;
+	--light-green: #dcf7b8;
+	--dark-green: #15640f;
+	--light-blue: #92B8F4;
+	--blue-grey: #607D8B;
+	--red: rgb(175, 27, 82);
 }
 
 input,
 textarea,
 select {
-  font-size: 1rem;
-  outline: none;
-  appearance: none;
-  -webkit-tap-highlight-color: rgba(0,0,0,0);
-  -webkit-appearance: none;
+	font-size: 1rem;
+	outline: none;
+	appearance: none;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	-webkit-appearance: none;
 }
 
 * {
-  box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 body {
-  color: var(--primary-dark);
-  margin: 0;
-  font-size: 14px;
+	color: var(--primary-dark);
+	margin: 0;
+	font-size: 14px;
 }
 
 input, select, textarea {
-  color: var(--primary-dark);
+	color: var(--primary-dark);
 }
 
 @font-face {
-  font-family: 'icons';
-  src: url('assets/icons.woff?9yive5') format('woff');
-  font-weight: normal;
-  font-style: normal;
-  font-display: block;
+	font-family: 'icons';
+	src: url('assets/icons.woff?9yive5') format('woff');
+	font-weight: normal;
+	font-style: normal;
+	font-display: block;
 }
 
 [class^="icon-"], [class*=" icon-"] {
-  /* use !important to prevent issues with browser extensions that change fonts */
-  font-family: 'icons' !important;
-  font-style: normal;
-  font-weight: normal;
-  font-variant: normal;
-  text-transform: none;
-  line-height: 1;
+	/* use !important to prevent issues with browser extensions that change fonts */
+	font-family: 'icons' !important;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
 
-  /* Better Font Rendering =========== */
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
 
 .icon-write:before { content: "\e900"; }
