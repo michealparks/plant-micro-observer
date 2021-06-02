@@ -10,3 +10,10 @@ export const REQUIRED_DATA = [
     message: 'A plant group is required.'
   }
 ]
+
+export const SEARCHABLE_DATA = [
+  'group',
+  'annotations',
+  'notes',
+  'datetime'
+]
