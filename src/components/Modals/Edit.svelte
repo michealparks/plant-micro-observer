@@ -2,17 +2,21 @@
   import { fade, fly } from 'svelte/transition'
   import AnnotatedImg from '../AnnotatedImg.svelte'
   import Select from '../Select.svelte'
-  import { PLANT_GROUPS } from '../../lib/constants'
+  import { PLANT_GROUPS, REQUIRED_DATA } from '../../lib/constants'
   import { images, stagedImage } from '../../lib/stores'
 
   const handleSubmit = (e: Event) => {
+    for (const { key, message } of REQUIRED_DATA) {
+      const data = $stagedImage[key]
+      if (data === '' || data === null || data === undefined) {
+        return alert(message)
+      }
+    }
+
     if ($stagedImage.temp === true) {
       delete $stagedImage.temp
-      $images = [...$images, $stagedImage]
+      $images = [$stagedImage, ...$images]
     } else {
-      const { id } = $stagedImage
-      const index = $images.findIndex(item => item.id === id)
-      $images[index] = $stagedImage
       $images = $images
     }
 
@@ -27,7 +31,6 @@
     if ($stagedImage.temp !== true) {
       const { id } = $stagedImage
       const index = $images.findIndex(item => item.id === id)
-      console.log(index)
       $images.splice(index, 1)
       $images = $images
     }
@@ -47,27 +50,35 @@
     >
       <AnnotatedImg />
 
-      <Select
-        selectedOption={$stagedImage.group}
-        options={PLANT_GROUPS}
-        on:select={handleGroupSelect}
-      />
+      <div class='inputs'>
+        <span>
+          <small class='icon-write' />
+          <small>Tap image to add annotations</small>
+        </span>
 
-      <textarea
-        placeholder='Notes'
-        bind:value={$stagedImage.notes}
-      />
+        <Select
+          selectedOption={$stagedImage.group}
+          options={PLANT_GROUPS}
+          on:select={handleGroupSelect}
+        />
 
-      <div class='actions'>
-        <button class='submit' on:click={handleSubmit}>
-          {$stagedImage.temp ? 'Upload' : 'Update'}
-          <span class='icon-up' />
-        </button>
+        <textarea
+          placeholder='Notes'
+          bind:value={$stagedImage.notes}
+        />
 
-        <button class='cancel' on:click={handleDiscard}>
-          Discard
-          <span class='icon-cross' />
-        </button>
+        <div class='actions'>
+          <button class='submit' on:click={handleSubmit}>
+            <span class='icon-up' />
+            {$stagedImage.temp ? 'Upload' : 'Update'}
+          </button>
+
+          <button class='cancel' on:click={handleDiscard}>
+            <span class='icon-cross' />
+            Delete
+          </button>
+        </div>
+
       </div>
     </section>
   </div>
@@ -78,6 +89,7 @@
   .background {
     position: fixed;
     z-index: 2;
+    overflow-x: hidden;
     overflow-y: auto;
     top: 0;
     left: 0;
@@ -86,7 +98,7 @@
     background: white;
   }
 
-  .modal {
+  .inputs {
     padding: 20px;
   }
 
@@ -119,7 +131,7 @@
     color: white;
 
     span {
-      margin-left: 5px;
+      margin-right: 5px;
     }
   }
 

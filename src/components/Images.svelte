@@ -1,14 +1,14 @@
 <script lang='ts'>
-  import type { PlantData } from 'src/lib/types'
   import { filteredImages, stagedImage } from '../lib/stores'
-
 </script>
 
 <section>
   {#each $filteredImages as image (image.id)}
     <div on:click={() => { $stagedImage = image }}>
       <img loading='lazy' alt='Plant' src={image.objectURL} />
-      <p>{image.group}</p>
+      {#if image.group}
+        <p>{image.group}</p>
+      {/if}
     </div>
   {/each}
 </section>

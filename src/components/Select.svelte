@@ -40,6 +40,7 @@
 		background-color: var(--light-green);
 		border: 0;
 		border-radius: 5px;
+		font-size: 1rem;
 
 		&.selected {
 			color: white;

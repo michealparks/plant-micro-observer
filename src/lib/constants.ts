@@ -3,3 +3,10 @@ export const PLANT_GROUPS = [
   'Kale',
   'Basil'
 ]
+
+export const REQUIRED_DATA = [
+  {
+    key: 'group',
+    message: 'A plant group is required.'
+  }
+]

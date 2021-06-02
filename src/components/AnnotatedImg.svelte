@@ -1,29 +1,42 @@
 <script lang='ts'>
-	import type { AnnotationData } from '../lib/types'
 	import { nanoid } from 'nanoid'
 	import Annotation from './Annotation.svelte'
 	import { stagedImage } from '../lib/stores'
 
-	export let annotations: AnnotationData[] = []
+	let img: HTMLImageElement
 
 	const handleAddAnnotation = (e: MouseEvent) => {
-		annotations = [...annotations, {
+		const rect = img.getBoundingClientRect()
+		const x = e.clientX - rect.left
+		const y = e.clientY - rect.top
+	
+		$stagedImage.annotations = [...$stagedImage.annotations, {
 			id: nanoid(),
-			x: e.clientX,
-			y: e.clientY,
+			x,
+			y,
 			text: ''
 		}]
 	}
 </script>
 
+{#if $stagedImage !== undefined}
 <section>
-	<img alt='' src={$stagedImage.objectURL} />
-	<button on:click={handleAddAnnotation} class='icon-write' />
+	<img
+		bind:this={img}
+		alt=''
+		loading='lazy'
+		src={$stagedImage.objectURL}
+		on:click={handleAddAnnotation}
+	/>
 
-	{#each annotations as annotation (annotation.id)}
-		<Annotation {...annotation} />
+	{#each $stagedImage.annotations as annotation (annotation.id)}
+		<Annotation
+			x={annotation.x}
+			y={annotation.y}
+			bind:text={annotation.text} />
 	{/each}
 </section>
+{/if}
 
 <style>
 	section {
@@ -31,13 +44,10 @@
 	}
 
 	img {
+		user-select: none;
+		-webkit-user-select: none;
+		-webkit-user-drag: none;
     width: 100%;
     margin-bottom: 5px;
   }
-
-	button {
-		position: absolute;
-		bottom: 0;
-		left: 10px;
-	}
 </style>

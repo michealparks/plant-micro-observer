@@ -1,7 +1,7 @@
 export type AnnotationData = {
-  id: string,
-  x: number,
-  y: number,
+  id: string
+  x: number
+  y: number
   text: string
 }
 
