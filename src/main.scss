@@ -1,6 +1,19 @@
-:root {
+:root, input {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
     Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  --light-green: #4CAF50;
+  --light-blue: #2196F3;
+  --blue-grey: #607D8B;
+}
+
+input[type=text], input[type=button], input[type=search] {
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+input, button {
+  outline: none;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 
 * {
@@ -9,4 +22,44 @@
 
 body {
   margin: 0;
+  font-size: 14px;
 }
+
+@font-face {
+  font-family: 'icons';
+  src: url('assets/icons.woff?9yive5') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icons' !important;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-write:before { content: "\e900"; }
+.icon-clock:before { content: "\e901"; }
+.icon-forward:before { content: "\e902"; }
+.icon-search:before { content: "\e903"; }
+.icon-trash:before { content: "\e904"; }
+.icon-sun:before { content: "\e905"; }
+.icon-moon:before { content: "\e906"; }
+.icon-camera:before { content: "\e907"; }
+.icon-image:before { content: "\e908"; }
+.icon-cog:before { content: "\e909"; }
+.icon-marker:before { content: "\e90a"; }
+.icon-tag:before { content: "\e90b"; }
+.icon-chart:before { content: "\e90c"; }
+.icon-cross:before { content: "\e90d"; }
+.icon-up:before { content: "\e90e"; }
+.icon-windows:before { content: "\e90f"; }
