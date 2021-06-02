@@ -47,10 +47,10 @@ Vite and snowpack were major bundling innovations that occurred in 2020. These t
 ## Next steps
 - Storage-persistant filters for groups and other metadata could exist within a hamburger menu
 - Discarding items should have an undo action for users who accidently discarded
-- Better data structures should be made for faster filtering, 
+- Better data structures should be made for faster filtering
 - optimizations should be made for users that have uploaded many images:
 	- either paginate or progressively unload / load images while scrolling
-- Assigning objectURLs to all images at startup could slow it down as number of images grow, alternatively generate objectURLS as images are scrolled into a view
+- Assigning objectURLs to all images at startup could slow it down as number of images grow, alternatively generate objectURLS as images are scrolled into view
 - Annotations are really barebones and finicky:
 	- Need to change annotation text position based on annotation location so that no overflowing occurs
 	- Need to allow dragging, deleting annotations
