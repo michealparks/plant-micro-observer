@@ -7,7 +7,7 @@ export type AnnotationData = {
 
 export type PlantData = {
   id: string
-  datetime: number
+  datetime: string
   blob: Blob
   objectURL: string
   group: string

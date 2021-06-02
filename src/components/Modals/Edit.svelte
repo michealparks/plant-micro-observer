@@ -50,11 +50,16 @@
     >
       <AnnotatedImg />
 
-      <div class='inputs'>
-        <span>
+      <div class='metadata'>
+        <div>
           <small class='icon-write' />
           <small>Tap image to add annotations</small>
-        </span>
+        </div>
+        <small>{$stagedImage.datetime}</small>
+      </div>
+
+      <div class='inputs'>
+        
 
         <Select
           selectedOption={$stagedImage.group}
@@ -98,8 +103,16 @@
     background: white;
   }
 
+  .metadata {
+    padding: 5px 20px 0;
+
+    div {
+      margin-bottom: 10px;
+    }
+  }
+
   .inputs {
-    padding: 20px;
+    padding: 10px 20px;
   }
 
   input,

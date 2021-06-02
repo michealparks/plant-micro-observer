@@ -16,7 +16,7 @@
     $stagedImage = {
       blob,
       id: nanoid(),
-      datetime: Date.now(),
+      datetime: utils.readableDate(),
       objectURL: URL.createObjectURL(blob),
       group: '',
       notes: '',

@@ -1,6 +1,6 @@
 const intl = new Intl.DateTimeFormat('en-US', {
   dateStyle: 'full',
-  timeStyle: 'long'
+  timeStyle: 'medium'
 })
 
 const fileToBlob = async (file: File) => {
