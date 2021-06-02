@@ -6,6 +6,8 @@
 
 ## Getting started
 
+Viewable [here](https://michealparks.github.io/plant-micro-observer/).
+
 ```
 npm install
 ```
