@@ -1,8 +1,10 @@
 # Plant Micro-Observer App
 
-## Recommended IDE Setup
+## Recommended setup
 
 [VSCode](https://code.visualstudio.com/) + [Svelte](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode).
+
+Tested with and developed for iOS Safari. Should work with Chrome as well, but was not Android tested.
 
 ## Getting started
 
@@ -28,7 +30,7 @@ npm run preview
 npm run gh-pages
 ```
 
-## Design and Technology Discussion
+## Design and technology discussion
 The app consists of highly decoupled components that share data via message passing through svelte "stores": reactive variables that can update components that subscribe to their changes when reassigned.
 
 #### Svelte
@@ -40,7 +42,7 @@ Since we're persisting a lot of images and objects, IndexedDB is the only scalab
 #### Vite
 Vite and snowpack were major bundling innovations that occurred in 2020. These tools take advantage of native ES6 modules by only transpiling the module that's currently being edited, and serves these modules individually rather concatinating them together into a bundled file. This makes typescript, sass, svelte transpilation, and dev startup nearly instantaneous as the app scales.
 
-## Next Steps
+## Next steps
 - Storage-persistant filters for groups and other metadata should exist within a hamburger menu
 - Discarding items should have an undo action for users who accidently discarded
 - Better data structures should be made for faster filtering, and more optimizations should be made for users that have uploaded many images
