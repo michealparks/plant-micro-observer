@@ -1,24 +1,13 @@
 <script lang='ts'>
-  import type { ImageDataObject } from 'src/lib/types'
-  import { images, searchFilter, stagedImage } from '../lib/stores'
+  import type { PlantData } from 'src/lib/types'
+  import { filteredImages, stagedImage } from '../lib/stores'
 
-  const imageFilter = (image: ImageDataObject) => {
-    return JSON.stringify(image).includes($searchFilter)
-  }
-
-  const getImages = () => {
-    if ($searchFilter === '') {
-      return $images
-    }
-
-    return $images.filter(imageFilter)
-  }
 </script>
 
 <section>
-  {#each getImages() as image (image.id)}
+  {#each $filteredImages as image (image.id)}
     <div on:click={() => { $stagedImage = image }}>
-      <img loading='lazy' alt='' src={image.objectURL} />
+      <img loading='lazy' alt='Plant' src={image.objectURL} />
       <p>{image.group}</p>
     </div>
   {/each}
@@ -47,7 +36,8 @@
     position: absolute;
     bottom: 0;
     padding: 8px;
-    background-color: var(--light-green-2);
-    color: white;
+    margin: 15px 10px;
+    border-radius: 5px;
+    background-color: var(--light-green);
   }
 </style>

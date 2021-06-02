@@ -61,7 +61,7 @@
   button {
     pointer-events: none;
     border-radius: 100%;
-    background-color: var(--light-blue);
+    background-color: var(--dark-green);
     font-size: 1.5rem;
     padding: 8px;
     color: white;

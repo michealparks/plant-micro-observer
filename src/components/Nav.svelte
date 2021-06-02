@@ -1,5 +1,10 @@
 <script lang='ts'>
   import { searchFilter } from '../lib/stores'
+
+  const handleSearch = (e: Event) => {
+    const target = e.target as HTMLInputElement
+    $searchFilter = target.value.trim()
+  }
 </script>
 
 <nav>
@@ -11,7 +16,7 @@
     id='search-input'
     type='search'
     placeholder="search"
-    bind:value={$searchFilter}
+    on:change={handleSearch}
   />
   <button
     title='settings'
@@ -27,14 +32,13 @@
     display: grid;
     place-items: center;
     grid-template-columns: 60px 1fr 60px;
-    background-color: var(--blue-grey);
+    background-color: var(--neutral);
   }
 
   button {
     height: 60px;
     font-size: 1.5rem;
     padding: 8px;
-    color: white;
     background: transparent;
     border: none;
   }
@@ -44,15 +48,11 @@
     height: 40px;
     padding-left: 0;
     background-color: transparent;
-    color: white;
     font-weight: inherit;
     border: 0;
     border-radius: 0;
-    border-bottom: 2px solid white;
+    border-bottom: 2px solid;
+    border-color: var(--primary-dark);
     font-size: 1.1rem;
-
-    &::placeholder {
-      color: rgba(255, 255, 255, 0.8);
-    }
   }
 </style>

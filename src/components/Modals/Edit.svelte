@@ -1,77 +1,74 @@
 <script lang='ts'>
   import { fade, fly } from 'svelte/transition'
+  import AnnotatedImg from '../AnnotatedImg.svelte'
+  import Select from '../Select.svelte'
   import { PLANT_GROUPS } from '../../lib/constants'
   import { images, stagedImage } from '../../lib/stores'
 
-  const clearStaged = () => {
+  const handleSubmit = (e: Event) => {
+    if ($stagedImage.temp === true) {
+      delete $stagedImage.temp
+      $images = [...$images, $stagedImage]
+    } else {
+      const { id } = $stagedImage
+      const index = $images.findIndex(item => item.id === id)
+      $images[index] = $stagedImage
+      $images = $images
+    }
+
     $stagedImage = undefined
   }
 
-  const handleSubmit = (e: Event) => {
-    e.preventDefault()
-
-    const { elements } = (e.target as HTMLFormElement)
-
-    for (const input of <any>elements) {
-      if (input.reportValidity() === false) return
-    }
-
-    delete $stagedImage.temp
-
-    $images = [...$images, $stagedImage]
-
-    console.log($images)
-
-    clearStaged()
+  const handleGroupSelect = (e) => {
+    $stagedImage.group = e.detail
   }
 
-  const handleBackgroundClick = (e: MouseEvent) => {
-    if (e.target === e.currentTarget) {
-      clearStaged()
+  const handleDiscard = (e: MouseEvent) => {
+    if ($stagedImage.temp !== true) {
+      const { id } = $stagedImage
+      const index = $images.findIndex(item => item.id === id)
+      console.log(index)
+      $images.splice(index, 1)
+      $images = $images
     }
+
+    $stagedImage = undefined
   }
 </script>
 
 {#if $stagedImage !== undefined}
   <div
     transition:fade={{ duration: 300 }}
-    on:click={handleBackgroundClick}
     class='background'
   >
-    <button
-      title='exit'
-      class='icon-cross'
-      on:click={clearStaged}
-    />
-
     <section
       transition:fly={{ y: 20, duration: 300 }}
       class='modal'
     >
-      <img alt='' src={$stagedImage.objectURL} />
+      <AnnotatedImg />
 
-      <form on:submit={handleSubmit}>
-        <input
-          required
-          list='plant-group-list'
-          type='text'
-          placeholder='Plant Group'
-          bind:value={$stagedImage.group}
-        />
-        <datalist id='plant-group-list'>
-          {#each PLANT_GROUPS as group}
-            <option>{group}</option>
-          {/each}
-        </datalist>
+      <Select
+        selectedOption={$stagedImage.group}
+        options={PLANT_GROUPS}
+        on:select={handleGroupSelect}
+      />
 
-        <textarea placeholder="Notes" />
+      <textarea
+        placeholder='Notes'
+        bind:value={$stagedImage.notes}
+      />
 
-        <button type='submit' class='submit'>
+      <div class='actions'>
+        <button class='submit' on:click={handleSubmit}>
           {$stagedImage.temp ? 'Upload' : 'Update'}
           <span class='icon-up' />
         </button>
-      </form>
 
+        <button class='cancel' on:click={handleDiscard}>
+          Discard
+          <span class='icon-cross' />
+        </button>
+      </div>
     </section>
   </div>
 {/if}
@@ -86,53 +83,51 @@
     left: 0;
     width: 100vw;
     height: 100%;
-    background: rgba(0,0,0,0.75);
-    backdrop-filter: blur(4px);
-  }
-
-  .icon-cross {
-    background: transparent;
-    border: none;
-    font-size: 2rem;
-    position: fixed;
-    top: 15px;
-    right: 15px;
-    color: white;
-    font-weight: 100;
+    background: white;
   }
 
   .modal {
-    background: white;
     padding: 20px;
-    margin: 60px 20px;
-    border-radius: 10px;
   }
 
-  img {
-    width: 100%;
-  }
-
-  input, textarea {
+  input,
+  textarea,
+  select {
     width: 100%;
     padding: 8px 12px;
-    font-size: 1.1rem;
-    margin: 10px 0;
+    margin: 5px 0;
     border: 1px solid #ccc;
     border-radius: 5px;
   }
 
-  .submit {
+  .actions {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-gap: 10px;
+  }
+
+  .submit,
+  .cancel {
     display: flex;
     align-items: center;
-    font-size: 1.3rem;
+    justify-content: center;
     padding: 10px 30px;
+    font-size: 1rem;
+    text-align: center;
     border: 0;
     border-radius: 20px;
     color: white;
-    background-color: var(--light-blue);
 
     span {
       margin-left: 5px;
     }
+  }
+
+  .cancel {
+    background-color: var(--red);
+  }
+
+  .submit {
+    background-color: var(--dark-green);
   }
 </style>

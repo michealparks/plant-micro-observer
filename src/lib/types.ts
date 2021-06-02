@@ -1,16 +1,17 @@
-export type Annotation = {
+export type AnnotationData = {
+  id: string,
   x: number,
   y: number,
   text: string
 }
 
-export type ImageDataObject = {
+export type PlantData = {
   id: string
   datetime: number
   blob: Blob
   objectURL: string
   group: string
   notes: string
-  annotations: Annotation[]
+  annotations: AnnotationData[]
   temp: boolean | undefined
 }

@@ -4,7 +4,7 @@
   "scripts": {
     "start": "vite --host --open",
     "build": "vite build",
-    "serve": "vite preview"
+    "preview": "vite preview --host --open"
   },
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "^1.0.0-next.10",
