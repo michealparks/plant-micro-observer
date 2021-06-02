@@ -1,5 +1,5 @@
 <script lang='ts'>
-  import type { ImageDataObject } from './lib/types'
+  import type { PlantData } from './lib/types'
 
   import localforage from 'localforage'
   import { onMount } from 'svelte'
@@ -15,7 +15,7 @@
       driver: localforage.INDEXEDDB
     })
 
-    const storedImages: ImageDataObject[] = await localforage.getItem('images') || []
+    const storedImages: PlantData[] = await localforage.getItem('images') || []
 
     for (const image of storedImages) {
       image.objectURL = URL.createObjectURL(image.blob)
