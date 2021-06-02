@@ -2,6 +2,7 @@
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
     Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   --light-green: #4CAF50;
+  --light-green-2: #66BB6A;
   --light-blue: #2196F3;
   --blue-grey: #607D8B;
 }
@@ -11,7 +12,7 @@ input[type=text], input[type=button], input[type=search] {
   -webkit-appearance: none;
 }
 
-input, button {
+input, button, textarea {
   outline: none;
   -webkit-tap-highlight-color: rgba(0,0,0,0);
 }

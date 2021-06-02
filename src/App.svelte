@@ -4,10 +4,10 @@
   import localforage from 'localforage'
   import { onMount } from 'svelte'
   import { images } from './lib/stores'
-  import Nav from './lib/Nav.svelte'
-  import Images from './lib/Images.svelte'
-  import Camera from './lib/Camera.svelte'
-  import EditModal from './lib/Modals/Edit.svelte'
+  import Nav from './components/Nav.svelte'
+  import Images from './components/Images.svelte'
+  import Camera from './components/Camera.svelte'
+  import EditModal from './components/Modals/Edit.svelte'
 
   onMount(async () => {
     localforage.config({

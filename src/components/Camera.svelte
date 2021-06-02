@@ -1,7 +1,7 @@
 <script lang='ts'>
   import { nanoid } from 'nanoid'
-  import { stagedImage } from './stores'
-  import { utils } from './utils'
+  import { stagedImage } from '../lib/stores'
+  import { utils } from '../lib/utils'
 
   const handleInputChange = async (e: Event) => {
     const target = e.target as HTMLInputElement
@@ -20,7 +20,8 @@
       objectURL: URL.createObjectURL(blob),
       group: '',
       notes: '',
-      annotations: []
+      annotations: [],
+      temp: true
     }
     
     target.value = ''

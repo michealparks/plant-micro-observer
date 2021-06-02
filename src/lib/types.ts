@@ -12,4 +12,5 @@ export type ImageDataObject = {
   group: string
   notes: string
   annotations: Annotation[]
+  temp: boolean | undefined
 }

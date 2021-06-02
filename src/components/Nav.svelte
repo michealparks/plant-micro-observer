@@ -1,12 +1,28 @@
+<script lang='ts'>
+  import { searchFilter } from '../lib/stores'
+</script>
+
 <nav>
-  <button title='search' class='icon-search' />
-  <input id='search-input' type='search' placeholder="search" />
-  <button title='settings' class='icon-cog' />
+  <button
+    title='search'
+    class='icon-search'
+  />
+  <input
+    id='search-input'
+    type='search'
+    placeholder="search"
+    bind:value={$searchFilter}
+  />
+  <button
+    title='settings'
+    class='icon-cog'
+  />
 </nav>
 
 <style lang='scss'>
   nav {
     position: sticky;
+    z-index: 1;
     top: 0;
     display: grid;
     place-items: center;
@@ -26,6 +42,7 @@
   input {
     width: 100%;
     height: 40px;
+    padding-left: 0;
     background-color: transparent;
     color: white;
     font-weight: inherit;

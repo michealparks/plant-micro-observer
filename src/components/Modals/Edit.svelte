@@ -1,14 +1,27 @@
 <script lang='ts'>
   import { fade, fly } from 'svelte/transition'
-  import { PLANT_GROUPS } from '../constants'
-  import { images, stagedImage } from '../stores'
+  import { PLANT_GROUPS } from '../../lib/constants'
+  import { images, stagedImage } from '../../lib/stores'
 
   const clearStaged = () => {
     $stagedImage = undefined
   }
 
-  const handleAddImage = () => {
+  const handleSubmit = (e: Event) => {
+    e.preventDefault()
+
+    const { elements } = (e.target as HTMLFormElement)
+
+    for (const input of <any>elements) {
+      if (input.reportValidity() === false) return
+    }
+
+    delete $stagedImage.temp
+
     $images = [...$images, $stagedImage]
+
+    console.log($images)
+
     clearStaged()
   }
 
@@ -37,23 +50,28 @@
     >
       <img alt='' src={$stagedImage.objectURL} />
 
-      <input
-        list='plant-group-list'
-        type='text'
-        placeholder='Plant Group'
-      />
-      <datalist id='plant-group-list'>
-        {#each PLANT_GROUPS as group}
-          <option>{group}</option>
-        {/each}
-      </datalist>
+      <form on:submit={handleSubmit}>
+        <input
+          required
+          list='plant-group-list'
+          type='text'
+          placeholder='Plant Group'
+          bind:value={$stagedImage.group}
+        />
+        <datalist id='plant-group-list'>
+          {#each PLANT_GROUPS as group}
+            <option>{group}</option>
+          {/each}
+        </datalist>
 
-      <textarea placeholder="Notes" />
+        <textarea placeholder="Notes" />
 
-      <button class='submit' on:click={handleAddImage}>
-        Upload
-        <span class='icon-up' />
-      </button>
+        <button type='submit' class='submit'>
+          {$stagedImage.temp ? 'Upload' : 'Update'}
+          <span class='icon-up' />
+        </button>
+      </form>
+
     </section>
   </div>
 {/if}
@@ -62,6 +80,7 @@
 <style lang='scss'>
   .background {
     position: fixed;
+    z-index: 2;
     overflow-y: auto;
     top: 0;
     left: 0;
@@ -98,6 +117,8 @@
     padding: 8px 12px;
     font-size: 1.1rem;
     margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
   }
 
   .submit {
