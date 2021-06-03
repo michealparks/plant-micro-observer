@@ -57,3 +57,5 @@ Vite and snowpack were major bundling innovations that occurred in 2020. These t
 - There aren't any tests yet:
 	- Need tests for adding images, removing images, updating images
 	- Need tests for filtering images
+- An interface should be made for adding / removing plant groups
+- The app should probably be converted to a client side routed SPA before it scales any further

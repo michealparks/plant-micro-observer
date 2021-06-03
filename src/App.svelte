@@ -11,8 +11,7 @@
 
 	onMount(async () => {
 		localforage.config({
-			name: 'Plant Micro Observer',
-			driver: localforage.INDEXEDDB
+			name: 'Plant Micro Observer'
 		})
 
 		const storedImages: PlantData[] = await localforage.getItem('images') || []
